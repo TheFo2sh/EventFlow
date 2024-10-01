@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <PackageId>EventFlow</PackageId>
+        <Version>1.0.0</Version>
+        <Authors>Ahmed Fouad</Authors>
+        <Company>Ahmed Fouad</Company>
+        <Product>EventFlow</Product>
+        <Description>
+            EventFlow is a .NET library designed to simplify the implementation of event sourcing and CQRS (Command Query Responsibility Segregation) patterns. 
+            It provides a clean and efficient way to handle events, snapshots, and state reconstruction in applications that require high performance and scalability.
+        </Description>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageProjectUrl>https://github.com/TheFo2sh/AsyncFlow</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/TheFo2sh/AsyncFlow</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageTags>EventFlow Asynchronous CRSS .NET</PackageTags>
+        <PackageReadmeFile>readme.md</PackageReadmeFile>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Title>EventFlow</Title>    
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.1" />
+      <PackageReference Include="Microsoft.Extensions.Options" Version="8.0.2" />
+      <PackageReference Include="System.Linq.Async" Version="6.0.1" />
+    </ItemGroup>
+    <ItemGroup>
+        <None Include="../readme.md" Pack="true" PackagePath="" />
+    </ItemGroup>
+</Project>
