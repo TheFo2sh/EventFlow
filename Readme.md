@@ -43,15 +43,14 @@ bash
 
 Copy code
 
-`Install-Package EventFlow`
+`Install-Package NEventFlow`
 
 Or via the .NET CLI:
 
 bash
 
-Copy code
 
-`dotnet add package EventFlow`
+`dotnet add package NEventFlow`
 
 ### Prerequisites
 

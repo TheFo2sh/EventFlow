@@ -29,7 +29,7 @@ public class EventFlowBuilder
     public EventFlowBuilder AddSnapshotStore<TState>(
         Func<IServiceProvider, ISnapshotStore<TState>> implementationFactory)
     {
-        _services.AddSingleton<ISnapshotStore<TState>>(implementationFactory);
+        _services.AddScoped<ISnapshotStore<TState>>(implementationFactory);
         return this;
     }
 
@@ -38,7 +38,7 @@ public class EventFlowBuilder
     /// </summary>
     public EventFlowBuilder AddEventSource(Func<IServiceProvider, IEventSource> implementationFactory)
     {
-        _services.AddSingleton<IEventSource>(implementationFactory);
+        _services.AddScoped<IEventSource>(implementationFactory);
         return this;
     }
 
@@ -59,7 +59,7 @@ public class EventFlowBuilder
         });
 
         // Register the QueryModel
-        _services.AddSingleton<TModel>();
+        _services.AddScoped<TModel>();
 
         return this;
     }
