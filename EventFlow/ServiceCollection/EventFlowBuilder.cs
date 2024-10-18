@@ -43,16 +43,28 @@ public class EventFlowBuilder
     }
 
     /// <summary>
+    /// Registers an IEventSource implementation. with key
+    /// </summary>
+    public EventFlowBuilder AddEventSource(string key,
+        Func<IServiceProvider, object, IEventSource> implementationFactory)
+    {
+        _services.AddKeyedScoped<IEventSource>(key, implementationFactory!);
+        return this;
+    }
+
+    /// <summary>
     /// Registers a QueryModel and its dependencies.
     /// </summary>
-    public EventFlowBuilder AddQueryModel<TState, TModel>()
+    public EventFlowBuilder AddQueryModel<TState, TModel>(string? eventSourceKey = null)
         where TModel : QueryModel<TState>
     {
         // Register QueryModelServices<TState>
-        _services.AddSingleton<QueryModelServices<TState>>(sp =>
+        _services.AddScoped<QueryModelServices<TState>>(sp =>
         {
             var snapshotStore = sp.GetRequiredService<ISnapshotStore<TState>>();
-            var eventSource = sp.GetRequiredService<IEventSource>();
+            var eventSource = string.IsNullOrEmpty(eventSourceKey)
+                ? sp.GetRequiredService<IEventSource>()
+                : sp.GetRequiredKeyedService<IEventSource>(eventSourceKey);
             var options = sp.GetRequiredService<IOptions<Configuration>>();
 
             return new QueryModelServices<TState>(snapshotStore, eventSource, options);
